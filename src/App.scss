@@ -6,3 +6,18 @@
     color:#000;
   }
 }
+
+.section1 {
+  text-align:center;
+}
+
+.nav {
+  width:100%;
+  position:absolute;
+  left:0;
+  top:0;
+  &__list {
+    font-size:30px;
+    color:#000;
+  }
+}
