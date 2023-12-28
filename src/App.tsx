@@ -1,12 +1,14 @@
-import React from 'react';
-import logo from './logo.svg';
-import './App.scss';
 
-function App() {
+import './App.scss';
+import Main from './components/main';
+import Page1 from './components/page1';
+
+const App = ()=> {
   return (
-      <header className="header">
-        <h1 className="header__tit">Hello World</h1>
-      </header>
+    <>
+      <Main />
+      <Page1 />
+    </>
   );
 }
 
