@@ -1,17 +1,16 @@
-
 import './App.scss';
 import { Route, Routes } from 'react-router-dom';
 import Navigation from './components/navigation';
-import Main from './components/main';
-import Page1 from './components/page1';
+import Work from './components/work';
+import Story from './components/story';
 
 const App = ()=> {
   return (
     <>
       <Navigation />
       <Routes>
-        <Route index element={<Main />} />
-        <Route path='/page1' element={<Page1 />} />
+        <Route index element={<Work />} />
+        <Route path='/story' element={<Story text="이런식으로 되는군요?" />} />
       </Routes>
     </>
   );
