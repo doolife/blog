@@ -1,0 +1,15 @@
+{
+  "files": {
+    "main.css": "/doolife/doolife.github.io/static/css/main.01a63a04.css",
+    "main.js": "/doolife/doolife.github.io/static/js/main.861d9e56.js",
+    "static/js/787.774594b4.chunk.js": "/doolife/doolife.github.io/static/js/787.774594b4.chunk.js",
+    "index.html": "/doolife/doolife.github.io/index.html",
+    "main.01a63a04.css.map": "/doolife/doolife.github.io/static/css/main.01a63a04.css.map",
+    "main.861d9e56.js.map": "/doolife/doolife.github.io/static/js/main.861d9e56.js.map",
+    "787.774594b4.chunk.js.map": "/doolife/doolife.github.io/static/js/787.774594b4.chunk.js.map"
+  },
+  "entrypoints": [
+    "static/css/main.01a63a04.css",
+    "static/js/main.861d9e56.js"
+  ]
+}
