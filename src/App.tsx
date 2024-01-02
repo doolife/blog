@@ -10,7 +10,7 @@ const App = ()=> {
       <Navigation />
       <Routes>
         <Route index element={<Work />} />
-        <Route path='/story' element={<Story text="이런식으로 되는군요?" />} />
+        <Route path='/story' element={<Story />} />
       </Routes>
     </>
   );
