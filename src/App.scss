@@ -12,12 +12,9 @@
 }
 
 .work {
-  margin-top:50px;
+  margin:50px auto 0;
+  width:900px;
   text-align:center;
-  &__tit {
-    font-size:30px;
-    color:#000;
-  }
 }
 
 .story {
@@ -32,5 +29,22 @@
   &__list {
     font-size:30px;
     color:#000;
+  }
+}
+
+.mark-class {
+  font-size:15px;
+  h1, h2, h3, h4, h5, h6, p {
+    margin:10px;
+  }
+  pre {
+    margin:10px;
+  }
+  code {
+    text-align:left;
+    &.hljs {
+      padding:10px;
+      line-height:1.4;
+    }
   }
 }

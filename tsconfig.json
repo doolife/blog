@@ -19,7 +19,7 @@
     "isolatedModules": true,
     "noEmit": true,
     "jsx": "react-jsx",
-    "types": ["webpack-env"]
+    "types": ["webpack-env"]  // 'require.context'는 TypeScript에서 바로 사용할 수 없어서 @types/webpack-env 패키지 설치하여 'require.context' 대신 사용
   },
   "include": [
     "src"

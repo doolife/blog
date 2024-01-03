@@ -1,29 +1,19 @@
-import { useEffect, useState } from 'react';
-import ReactMarkdown from 'react-markdown';
-import remarkGfm from 'remark-gfm';
+import "highlight.js/styles/agate.css";
+import ReactMarkdown from 'react-markdown';     // 마크다운 렌더링 라이브러리(Ract 컴포넌트 or Html 변환 )
+import remarkGfm from 'remark-gfm';             // 테이블, 링크, 체크리스트 등의 형식을 표현하는 추가 기능(react-markdown 사용만으로는 마크다운 문법이 제한적이기 때문)
+import rehypeHighlight from "rehype-highlight"; // 마크다운 code 태그 스타일링 라이브러리(highlight.js/styles/a11y-dark.css를 상단에 import 해서 사용)
 
-// webpack의 require.context 대신 사용할 함수 정의
-const importAll = (r: any) => r.keys().map(r);
-console.log(importAll)
+interface WorkProps {
+    markdown: string;
+}
 
-// _posts 폴더 내의 모든 .md 파일 가져오기
-const markdownFiles = importAll((require as any).context('../posts', false, /\.md$/));
-
-const Work = () => {
-    const [markdown, setMarkdown] = useState("");
-
-    useEffect(() => {
-        // 첫 번째 .md 파일 가져오기
-        const firstMarkdownFile = markdownFiles[0];
-        // 파일 읽기
-        fetch(firstMarkdownFile)
-            .then((response) => response.text())
-            .then((text) => setMarkdown(text));
-    }, []);
-
+const Work : React.FC<WorkProps> = ({ markdown }) => {
     return (
-        <div className="work">
-            <ReactMarkdown remarkPlugins={[remarkGfm]}>{markdown}</ReactMarkdown>
+        <div className="work mark-class">
+             {/* ReactMarkdown을 사용하여 markdown 내용 렌더링 */}
+            <ReactMarkdown remarkPlugins={[remarkGfm]} rehypePlugins={[rehypeHighlight]}>
+                {markdown}
+            </ReactMarkdown>
         </div>
     );
 };

@@ -3,9 +3,9 @@
 @import "mixin/bg";
 @import "mixin/hide-text";
 
-html, body, ol, ul, li, h1, h2, h3, h4, h5, h6{margin:0; padding:0;}
+html, body, ol, ul, li, h1, h2, h3, h4, h5, h6, p, pre, code {margin:0; padding:0;}
 
-body{font-size:11px; line-height:1; }
+body{font-size:12px; line-height:1; }
 
 button{ outline:0; background:none; border:0; cursor:pointer; }
 
@@ -19,4 +19,4 @@ caption{ height:0; overflow:hidden; font-size:0; }
 
 a{ color:#000; text-decoration-line:none;}
 
-a:hover{ color:#ddd; }
+a:hover{ color:#e23b3b; }
