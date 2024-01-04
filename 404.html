@@ -7,9 +7,10 @@
   <body>
     <p>Page Not Found</p>
     <script>
-      // GitHub Pages에서 새로 고침 시 서버에게 요청이 가도록 하는 스크립트
       if (window.location.protocol !== 'http:' && window.location.protocol !== 'https:') {
         window.location.href = 'https:' + window.location.href.substring(window.location.protocol.length);
+      } else {
+        window.location.replace('/');
       }
     </script>
   </body>
