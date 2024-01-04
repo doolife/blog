@@ -1,5 +1,3 @@
-
-
 const Story = () => {
     return (
         <div className="story">
