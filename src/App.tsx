@@ -10,6 +10,8 @@ import Story from './components/story';
 const importAll = (r: any) => r.keys().map(r);
 // posts 폴더 내의 모든 .md 파일 가져오기
 const markdownFiles = importAll((require as any).context('./posts', false, /\.md$/));
+// .md 파일 반대로('...' spread operator 사용하여 원본 배열 유지)
+const reverseMarkdownFiles = [...markdownFiles].reverse();
 
 const App = ()=> {
   // Markdown 파일 내용을 담은 상태
@@ -17,7 +19,7 @@ const App = ()=> {
 
   useEffect(() => {
   // 전체 .md 파일 가져오기
-  const allMarkdownFiles = markdownFiles.map((file: any)=>{
+  const allMarkdownFiles = reverseMarkdownFiles.map((file: any)=>{
     return fetch(file).then((response)=> response.text());
   });
   

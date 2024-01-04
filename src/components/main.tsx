@@ -3,7 +3,7 @@ interface WorkProps {
 }
 
 const Main : React.FC<WorkProps> = ({ propsMarkdown }) => {
-    console.log(propsMarkdown);
+    // console.log(propsMarkdown);
     return (
         <div className="main">
             메인페이지
