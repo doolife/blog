@@ -8,7 +8,7 @@ interface WorkProps {
 }
 
 const Work : React.FC<WorkProps> = ({ propsMarkdown }) => {
-    const listArray = propsMarkdown.map((markdown, index)=> markdown);
+    // const listArray = propsMarkdown.map((markdown, index)=> markdown);
     return (
         <div className="work mark-class">
             {/* ReactMarkdown을 사용하여 markdown 내용 렌더링 */}

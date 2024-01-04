@@ -1,7 +1,7 @@
 const Story = () => {
     return (
         <div className="story">
-            My Story
+            Story
         </div>
     );
 };
