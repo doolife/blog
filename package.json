@@ -11,6 +11,7 @@
     "@types/react-dom": "^18.2.18",
     "buffer": "^6.0.3",
     "front-matter": "^4.0.2",
+    "frontmatter": "^0.0.3",
     "gray-matter": "^4.0.3",
     "gray-matter-browser": "^4.0.4",
     "highlight.js": "^11.9.0",
@@ -32,7 +33,7 @@
     "eject": "react-scripts eject",
     "deploy": "gh-pages -d build"
   },
-  "homepage": ".",
+  "homepage": "https://doolife.github.io/",
   "eslintConfig": {
     "extends": [
       "react-app",

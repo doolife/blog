@@ -1,14 +1,14 @@
-import fm from "front-matter";
+import matter from "front-matter";
 
 interface WorkProps {
     propsMarkdown: string[];
 }
 
 const Main: React.FC<WorkProps> = ({ propsMarkdown }) => {
-    console.log("propsMarkdown", propsMarkdown);
-
     // front matter 추출한 전체 데이터 반환
-    const allFrontMatter = propsMarkdown.map((markdown) => fm(markdown).attributes);
+    const allFrontMatter = propsMarkdown.map((markdown) => {
+        return matter(markdown).attributes;
+    });
 
     return (
         <div className="main">
