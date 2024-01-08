@@ -1,46 +1,54 @@
 import './App.scss';
 import { useEffect, useState } from 'react';
 import { Route, Routes } from 'react-router-dom';
+import matter from "front-matter";
 import Navigation from './components/navigation';
 import Main from './components/main';
 import Work from './components/work';
 import Story from './components/story';
 
-// require.context 대신 사용할 함수 정의
 const importAll = (r: any) => r.keys().map(r);
-// posts 폴더 내의 모든 .md 파일 가져오기
 const markdownFiles = importAll((require as any).context('./posts', false, /\.md$/));
-// .md 파일 반대로('...' spread operator 사용하여 원본 배열 유지)
 const reverseMarkdownFiles = [...markdownFiles].reverse();
 
-const App = ()=> {
-  // Markdown 파일 내용을 담은 상태
+const App = () => {
   const [markdownList, setMarkdownList] = useState<string[]>([]);
 
   useEffect(() => {
-  // 전체 .md 파일 가져오기
-  const allMarkdownFiles = reverseMarkdownFiles.map((file: any)=>{
-    return fetch(file).then((response)=> response.text());
-  });
-  
-  Promise.all(allMarkdownFiles)
-    .then((markdownContents) => {
-      setMarkdownList(markdownContents);
-    })
-    .catch((error) => {
-      console.error("Error:", error);
+    const allMarkdownFiles = reverseMarkdownFiles.map((file: any) => {
+      return fetch(file).then((response) => response.text());
     });
-  }, []); // 컴포넌트가 마운트될 때 한 번만 실행
 
-  // Promise.all 이후에 실행될 로직
+    Promise.all(allMarkdownFiles)
+      .then((markdownContents) => {
+        setMarkdownList(markdownContents);
+      })
+      .catch((error) => {
+        console.error("Error:", error);
+      });
+  }, []);
+
   if (markdownList.length > 0) {
+    // 전체 markdown 파일의 머리말과 본문 분리
+    const allFrontMatters = markdownList.map(markdown => matter(markdown).attributes);
+    const allBodyMarkdown = markdownList.map(markdown => matter(markdown).body);
+
+    console.log(allFrontMatters)
+
     return (
       <>
         <Navigation />
         <Routes>
-          {/* Work 컴포넌트에 markdown 내용 전달 */}
-          <Route index element={<Main propsMarkdown={markdownList} />} />
-          <Route path='/work' element={<Work propsMarkdown={markdownList} />} />
+          {/* Main 컴포넌트에 머리말 전달 */}
+          <Route
+            index
+            element={<Main frontMatters={allFrontMatters} />}
+          />
+          {/* Work 컴포넌트에 본문 전달 */}
+          <Route
+            path='/work'
+            element={<Work markdownBodies={allBodyMarkdown} />}
+          />
           <Route path='/story' element={<Story />} />
         </Routes>
       </>
@@ -48,6 +56,6 @@ const App = ()=> {
   } else {
     return <span>Loading...</span>;
   }
-}
+};
 
 export default App;

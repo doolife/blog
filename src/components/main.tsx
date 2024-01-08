@@ -1,38 +1,27 @@
-import matter from "front-matter";
-
-interface WorkProps {
-    propsMarkdown: string[];
-}
-
-const Main: React.FC<WorkProps> = ({ propsMarkdown }) => {
-    // front matter 추출한 전체 데이터 반환
-    const allFrontMatter = propsMarkdown.map((markdown) => {
-        return matter(markdown).attributes;
-    });
-
+interface MainProps {
+    frontMatters: any[]; // Front matter의 타입에 맞게 수정 필요
+  }
+  
+  const Main: React.FC<MainProps> = ({ frontMatters }) => {
+    console.log(frontMatters)
     return (
-        <div className="main">
-            <section className="post-feed">
-            {allFrontMatter.map((key, index) => (
-                <a href="#." className="post-feed__list" key={index}>
-                    <header
-                        className="post-feed__list--image" 
-                        style={{ backgroundImage: `url(${(key as any).image})` }}
-                    ></header>
-
-                    <section
-                        className="post-feed__list--title"
-                    >{(key as any).title}</section>
-
-
-                    <footer 
-                        className="post-feed__list--content"
-                    >{ (key as any).description }</footer>
-                </a>
-            ))}
-            </section>
-        </div>
+      <div className="main">
+        <section className="post-feed">
+          {frontMatters.map((frontMatter, index) => (
+            <a href="#." className="post-feed__list" key={index}>
+              <header
+                className="post-feed__list--image"
+                style={{ backgroundImage: `url(${frontMatter.image})` }}
+              ></header>
+  
+              <section className="post-feed__list--title">{frontMatter.title}</section>
+  
+              <footer className="post-feed__list--content">{frontMatter.description}</footer>
+            </a>
+          ))}
+        </section>
+      </div>
     );
-};
-
-export default Main;
+  };
+  
+  export default Main;
