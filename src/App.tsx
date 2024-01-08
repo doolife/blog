@@ -33,8 +33,6 @@ const App = () => {
     const allFrontMatters = markdownList.map(markdown => matter(markdown).attributes);
     const allBodyMarkdown = markdownList.map(markdown => matter(markdown).body);
 
-    console.log(allFrontMatters)
-
     return (
       <>
         <Navigation />
