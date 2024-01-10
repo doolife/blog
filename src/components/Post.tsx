@@ -19,10 +19,12 @@ const Post: React.FC<SinglePostProps> = ({ markDownProps }) => {
   const bodyMarkdown = selectedPost;
 
   return (
-    <div className="post mark-class">
-      <ReactMarkdown remarkPlugins={[remarkGfm]} rehypePlugins={[rehypeHighlight]}>
-        {bodyMarkdown}
-      </ReactMarkdown>
+    <div className="container">
+      <div className="post mark-class">
+        <ReactMarkdown remarkPlugins={[remarkGfm]} rehypePlugins={[rehypeHighlight]}>
+          {bodyMarkdown}
+        </ReactMarkdown>
+      </div>
     </div>
   );
 };

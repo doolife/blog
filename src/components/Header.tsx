@@ -4,8 +4,15 @@ const Navigaion = () => {
     return (
       <>
         <header className="header">
-          <h1 className="header__logo">Doolife</h1>
-          <Link to='/' className="header__menu">List</Link>
+          <div className="container">
+            <div className="header--wrap">
+              <h1 className="header__title">Doolife</h1>
+              <p className="header__text">Hellow World</p>
+            </div>
+            <div className="header__menu">
+              <Link to='/'>List</Link>
+            </div>
+          </div>
         </header>
       </>
     );

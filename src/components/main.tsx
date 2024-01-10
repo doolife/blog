@@ -6,8 +6,8 @@ interface MainProps {
 
 const Main: React.FC<MainProps> = ({ frontMatterProps }) => {
   return (
-    <div className="main">
-      <section className="post-feed">
+    <div className="container">
+      <section className="main post-feed">
         {frontMatterProps.map((frontMatter, index) => (
           <Link to={`/post/${index}`} className="post-feed__list" key={index}>
             <header className="post-feed__header">
@@ -15,7 +15,7 @@ const Main: React.FC<MainProps> = ({ frontMatterProps }) => {
                 className="post-feed__header--image"
                 style={{ backgroundImage: `url(../img/${frontMatter.image})` }}
               >
-                {frontMatter.title}
+                {frontMatter.description}
               </div>
               <strong className="post-feed__header--title">{frontMatter.title}</strong>
             </header>
