@@ -29,7 +29,13 @@
 }
 
 .header {
-  @include bg($bg:'blog-cover.jpg');
+  @include bg($bg:'blog-cover.jpg', $position:center bottom);
+  padding-bottom: 20px;
+  padding-top: 20px;
+  width:100%;
+  height:380px;
+  position:relative;
+  background-size: cover;
   &__logo {
     @include position-abs($width: 100px, $height: 50px, $left: 50%, $top: 20px);
     text-align: center;
@@ -45,7 +51,7 @@
 }
 
 .main {
-  margin:100px auto 0;
+  margin:50px auto 0;
   max-width: 1120px;
   padding: 0 4vw;
   .post-feed {
@@ -73,7 +79,7 @@
 }
 
 .work {
-  margin:100px auto 0;
+  margin:50px auto 0;
   width:900px;
   text-align:center;
 }
@@ -92,6 +98,8 @@
   top:0;
   &__list {
     font-size:30px;
-    color:#000;
+    a {
+      color:#fff;
+    }
   }
 }
