@@ -8,14 +8,16 @@ interface MainProps {
         <section className="post-feed">
           {frontMatters.map((frontMatter, index) => (
             <a href="#." className="post-feed__list" key={index}>
-              <header
-                className="post-feed__list--image"
+              <header className="post-feed__header">
+                <div className="post-feed__header--image"
                 style={{ backgroundImage: `url(../img/${frontMatter.image})` }}
-              ></header>
+                >{frontMatter.title}</div>
+                <strong className="post-feed__header--title">{frontMatter.title}</strong>
+              </header>
   
-              <section className="post-feed__list--title">{frontMatter.title}</section>
+              <section className="post-feed__description">{frontMatter.description}</section>
   
-              <footer className="post-feed__list--content">{frontMatter.description}</footer>
+              <footer className="post-feed__date">{frontMatter.date}</footer>
             </a>
           ))}
         </section>
