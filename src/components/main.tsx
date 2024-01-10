@@ -3,7 +3,6 @@ interface MainProps {
   }
   
   const Main: React.FC<MainProps> = ({ frontMatters }) => {
-    console.log(frontMatters)
     return (
       <div className="main">
         <section className="post-feed">
@@ -11,7 +10,7 @@ interface MainProps {
             <a href="#." className="post-feed__list" key={index}>
               <header
                 className="post-feed__list--image"
-                style={{ backgroundImage: `url(${frontMatter.image})` }}
+                style={{ backgroundImage: `url(../img/${frontMatter.image})` }}
               ></header>
   
               <section className="post-feed__list--title">{frontMatter.title}</section>
