@@ -1,11 +1,10 @@
 import './App.scss';
 import { useEffect, useState } from 'react';
 import { Route, Routes } from 'react-router-dom';
-import matter from "front-matter";
-import Navigation from './components/navigation';
-import Main from './components/main';
-import Work from './components/work';
-import Story from './components/story';
+import matter from 'front-matter';
+import Header from './components/Header';
+import Main from './components/Main';
+import Post from './components/Post';
 
 const importAll = (r: any) => r.keys().map(r);
 const markdownFiles = importAll((require as any).context('./posts', false, /\.md$/));
@@ -29,25 +28,18 @@ const App = () => {
   }, []);
 
   if (markdownList.length > 0) {
-    // 전체 markdown 파일의 머리말과 본문 분리
     const allFrontMatters = markdownList.map(markdown => matter(markdown).attributes);
     const allBodyMarkdown = markdownList.map(markdown => matter(markdown).body);
 
     return (
       <>
-        <Navigation />
+        <Header />
         <Routes>
-          {/* Main 컴포넌트에 머리말 전달 */}
+          <Route index element={<Main frontMatterProps={allFrontMatters} />} />
           <Route
-            index
-            element={<Main frontMatters={allFrontMatters} />}
+            path="/post/:index"
+            element={<Post markDownProps={allBodyMarkdown} />}
           />
-          {/* Work 컴포넌트에 본문 전달 */}
-          <Route
-            path='/work'
-            element={<Work markdownBodies={allBodyMarkdown} />}
-          />
-          <Route path='/story' element={<Story />} />
         </Routes>
       </>
     );
