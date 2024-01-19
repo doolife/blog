@@ -2,6 +2,7 @@ import "highlight.js/styles/agate.css";
 import ReactMarkdown from 'react-markdown';
 import remarkGfm from 'remark-gfm';
 import rehypeHighlight from "rehype-highlight";
+import rehypeRaw from 'rehype-raw';
 import { useParams } from 'react-router-dom';
 
 interface SinglePostProps {
@@ -21,7 +22,7 @@ const Post: React.FC<SinglePostProps> = ({ markDownProps }) => {
   return (
     <div className="container">
       <div className="post mark-class">
-        <ReactMarkdown remarkPlugins={[remarkGfm]} rehypePlugins={[rehypeHighlight]}>
+        <ReactMarkdown remarkPlugins={[remarkGfm]} rehypePlugins={[rehypeHighlight, rehypeRaw]}>
           {bodyMarkdown}
         </ReactMarkdown>
       </div>
