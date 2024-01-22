@@ -1,3 +1,4 @@
+import { useState, useMemo } from 'react';
 import { Link } from 'react-router-dom';
 
 interface MainProps {
@@ -5,18 +6,32 @@ interface MainProps {
 }
 
 const Main: React.FC<MainProps> = ({ frontMatterProps }) => {
+  const [currentPage, setCurrentPage] = useState(1);
+  const itemsPerPage = 9;
+  // 현재 페이지의 첫 번째 항목 인덱스 계산
+  const indexOfFirstItem = (currentPage - 1) * itemsPerPage;
+  // useMemo를 사용하여 현재 표시할 항목들과 전체 페이지 수 계산
+  const { currentItems, totalPages } = useMemo(() => {
+    const indexOfLastItem = currentPage * itemsPerPage;
+    const currentItems = frontMatterProps.slice(indexOfFirstItem, indexOfLastItem);
+    const totalPages = Math.ceil(frontMatterProps.length / itemsPerPage);
+    return { currentItems, totalPages };
+  }, [currentPage, itemsPerPage, frontMatterProps]);
+  // Array.from을 사용하여 페이지 번호 배열 생성
+  const pageNumbers = useMemo(() => Array.from({ length: totalPages }, (_, i) => i + 1), [totalPages]);
+  // 페이지네이션 함수
+  const paginate = (pageNumber: number) => setCurrentPage(pageNumber);
+
   return (
     <div className="container">
       <section className="main post-feed">
-        {frontMatterProps.map((frontMatter, index) => (
-          <Link to={`/post/${index}`} className="post-feed__list" key={index}>
+        {currentItems.map((frontMatter, index) => (
+          <Link to={`/post/${indexOfFirstItem + index}`} className="post-feed__list" key={index}>
             <header className="post-feed__header">
               <div
                 className="post-feed__header--image"
                 style={{ backgroundImage: `url(../img/${frontMatter.image})` }}
-              >
-                {frontMatter.description}
-              </div>
+              />
               <strong className="post-feed__header--title">{frontMatter.title}</strong>
             </header>
 
@@ -26,6 +41,18 @@ const Main: React.FC<MainProps> = ({ frontMatterProps }) => {
           </Link>
         ))}
       </section>
+
+      <nav>
+        <ul className="pagination">
+          {pageNumbers.map(number => (
+            <li key={number} className="pagination__item">
+              <button type="button" onClick={() => paginate(number)} className="pagination__btn">
+                {number}
+              </button>
+            </li>
+          ))}
+        </ul>
+      </nav>
     </div>
   );
 };
