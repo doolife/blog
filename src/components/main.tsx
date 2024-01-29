@@ -8,8 +8,10 @@ interface MainProps {
 const Main: React.FC<MainProps> = ({ frontMatterProps }) => {
   const [currentPage, setCurrentPage] = useState(1);
   const itemsPerPage = 9;
+
   // 현재 페이지의 첫 번째 항목 인덱스 계산
   const indexOfFirstItem = (currentPage - 1) * itemsPerPage;
+
   // useMemo를 사용하여 현재 표시할 항목들과 전체 페이지 수 계산
   const { currentItems, totalPages } = useMemo(() => {
     const indexOfLastItem = currentPage * itemsPerPage;
@@ -17,8 +19,14 @@ const Main: React.FC<MainProps> = ({ frontMatterProps }) => {
     const totalPages = Math.ceil(frontMatterProps.length / itemsPerPage);
     return { currentItems, totalPages };
   }, [currentPage, itemsPerPage, frontMatterProps]);
+
   // Array.from을 사용하여 페이지 번호 배열 생성
-  const pageNumbers = useMemo(() => Array.from({ length: totalPages }, (_, i) => i + 1), [totalPages]);
+  const pageNumbers = useMemo(() => {
+    let numbers = [];
+    for (let i = 1; i <= totalPages; i++) numbers.push(i);
+    return numbers;
+  }, [totalPages]);
+  
   // 페이지네이션 함수
   const paginate = (pageNumber: number) => setCurrentPage(pageNumber);
 
@@ -30,7 +38,7 @@ const Main: React.FC<MainProps> = ({ frontMatterProps }) => {
             <header className="post-feed__header">
               <div
                 className="post-feed__header--image"
-                style={{ backgroundImage: `url(../img/${frontMatter.image})` }}
+                style={{ backgroundImage: `url(/blog/img/${frontMatter.image})` }}
               />
               <strong className="post-feed__header--title">{frontMatter.title}</strong>
             </header>

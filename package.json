@@ -34,7 +34,7 @@
     "test": "react-app-rewired test",
     "eject": "react-scripts eject"
   },
-  "homepage": "https://doolife.github.io/",
+  "homepage": "https://doolife.github.io/blog/",
   "eslintConfig": {
     "extends": [
       "react-app",
