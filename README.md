@@ -1,3 +1,3 @@
 # React MarkDown Blog - Front Project
 
-https://doolife.github.io
+https://doolife.github.io/blog/
